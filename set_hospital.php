@@ -2159,8 +2159,8 @@ class api extends restful_api {
                 //echo $time;
                 include('connect.php');
                 $check = false;
-                $sql5 = "SELECT clinic FROM service WHERE status = 'Hoạt động' AND (identifier IN( SELECT service FROM medical_diary WHERE customer_identifier='100000001' AND schedule='$time')) AND (clinic IN (SELECT identifier FROM `clinic` WHERE status = 'Hoạt động'))";
-                //echo $sql5;
+                $sql5 = "SELECT clinic FROM service WHERE status = 'Hoạt động' AND (identifier IN( SELECT service FROM medical_diary WHERE customer_identifier='$customer_identifier' AND schedule='$time')) AND (clinic IN (SELECT identifier FROM `clinic` WHERE status = 'Hoạt động'))";
+                // echo $sql5;
                 mysqli_set_charset($conn, 'UTF8');
                 $result5 = $conn->query($sql5);
                 if ($result5->num_rows > 0) {
