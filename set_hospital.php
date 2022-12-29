@@ -2160,7 +2160,7 @@ class api extends restful_api {
                 include('connect.php');
                 $check = false;
                 $sql5 = "SELECT clinic FROM service WHERE status = 'Hoạt động' AND (identifier IN( SELECT service FROM medical_diary WHERE customer_identifier='$customer_identifier' AND schedule='$time')) AND (clinic IN (SELECT identifier FROM `clinic` WHERE status = 'Hoạt động'))";
-                // echo $sql5;
+                //  echo $sql5;
                 mysqli_set_charset($conn, 'UTF8');
                 $result5 = $conn->query($sql5);
                 if ($result5->num_rows > 0) {
@@ -2172,6 +2172,7 @@ class api extends restful_api {
                 }
                 if($check) {
                     $sql = "UPDATE medical_diary SET status = 'Chưa khám', clinic = NULL, time_input = NULL WHERE customer_identifier = '$customer_identifier' AND status = 'Chờ khám' AND schedule = '$time'";
+                    // echo $sql;
                     mysqli_set_charset($conn, 'UTF8');
                     $result = $conn->query($sql);
 
@@ -2180,9 +2181,9 @@ class api extends restful_api {
                     // Erro:
                     //$maxTime = time_all_clinic( $data,  $customer_identifier);
 
-                    $sql = "UPDATE medical_diary SET clinic = '$data', status = 'Chờ khám', time_input = '$time_input' WHERE schedule = '$time'  AND customer_identifier = '$customer_identifier' AND service IN (SELECT identifier FROM `service` WHERE clinic = '$data')   AND service IN (SELECT service FROM `medical_diary` WHERE customer_identifier = '$customer_identifier' AND schedule = '$time' AND location = (SELECT MIN(location) FROM medical_diary WHERE customer_identifier = '$customer_identifier'  AND schedule = '$time'  AND service IN (SELECT identifier FROM service WHERE clinic = '$data')))";
+                    $sql = "UPDATE medical_diary SET clinic = '$data', status = 'Chờ khám', time_input = '$time_input' WHERE schedule = '$time'  AND customer_identifier = '$customer_identifier' AND service IN (SELECT identifier FROM `service` WHERE clinic = '$data') AND   location = (SELECT * FROM (SELECT MIN(location) FROM medical_diary WHERE customer_identifier = '$customer_identifier'  AND schedule = '$time'  AND service IN (SELECT identifier FROM service WHERE clinic = '$data')) AS x)";
                     //$sql = "UPDATE medical_diary SET clinic = '$data', status = 'Chờ khám', time_input = '$time_input' WHERE schedule = '$time'  AND status='Chưa khám' AND customer_identifier = '$customer_identifier' AND service IN (SELECT identifier FROM `service` WHERE clinic = '$data')";
-                    //echo $sql."\n";
+                    // echo $sql."\n";
 
                     mysqli_set_charset($conn, 'UTF8');
                     $result = $conn->query($sql);
