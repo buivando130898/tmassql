@@ -2114,8 +2114,8 @@ class api extends restful_api {
                 $clinic_id = $_GET["clinic_id"];
             	include('connect.php');
 				$time = date('Y-m-d');
-                $sql = "SELECT DISTINCT customer_identifier, time_input FROM `medical_diary` WHERE clinic = '$clinic_id' AND status = 'Chờ khám' AND schedule = '$time'  ORDER BY vip, time_input ASC ";
-               // echo $sql;
+                $sql = "SELECT DISTINCT customer_identifier, time_input, vip FROM `medical_diary` WHERE clinic = '$clinic_id' AND status = 'Chờ khám' AND schedule = '$time'  ORDER BY vip, time_input ASC ";
+                // echo $sql;
                 mysqli_set_charset($conn, 'UTF8');
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
