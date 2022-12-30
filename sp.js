@@ -7,7 +7,10 @@ identifier = url.replace(url_home, '');
 var service_info = [];
 location_color = undefined;
 token_login = "?tokenlogin=";
-time_id = 0;
+time_id = 1;
+
+var update_customer;
+var dem = 0;
 
 
 var today = new Date();
@@ -75,15 +78,21 @@ function medical_diary_was_clinic_begin() {
 }
 
 function medical_diary_was_clinic_begin2(customerId) {
+    
+    clearInterval(update_customer);
+    update_customer = null;
+    
+    if (confirm("Mời khách hàng đi đến phòng khám?")) {
     const endpoint = `${server}medical_diary_was_clinic_begin${token_login}customer_identifier=${customerId}`;
-    // console.log(endpoint);
     fetch(endpoint)
         .then((response) => response.json())
         .then((data) => {
             getCustomer_info_all();
             alert(data);
+            update_getCustomer_info_all();
             //location.reload();
         });
+    }
 }
 
 function check_NULL(data) {
@@ -181,8 +190,6 @@ function openDate_medical_diary(id) {
 }
 
 function getCustomer_info_all() {
-    clearInterval(update_customer);
-    update_customer = null;
     customer_info = `                
         <tr>
         <th class = "mobi">Mã</th>
@@ -240,17 +247,77 @@ function getCustomer_info_all() {
 
             }
             document.getElementById("customer_info").innerHTML = customer_info;
-            update_getCustomer_info_all();
         });
 }
 
 
+function getCustomer_info_all_shearch() {
+    clearInterval(update_customer);
+    update_customer = null;
+    name_shearch = document.getElementById("name_shearch").value;
+    customer_info = `                
+        <tr>
+        <th class = "mobi">Mã</th>
+        <th class = "mobi">Vip</th>
+        <th>Họ Tên</th>
+        <th class = "mobi">Ngày sinh</th>
+        <th class = "mobi">Giới tính</th>
+        <th class = "mobi">Ghi chú</th>
+        <th class = "mobi">Đoàn khám</th>
+        <th class = "mobi">Đến khám</th>
+        <th>Gói khám</th>
+        <th>Trạng thái</th>
+        <th>Chờ </th>
+        <th>Khám</th>
+        </tr>`;
+    const endpoint = `${server_get}get_customer_date_shearch${token_login}name=${name_shearch}`;
+    // console.log(endpoint);
+    fetch(endpoint)
+        .then((response) => response.json())
+        .then((data) => {
+            // console.log(data);
+            for (i = 0; i < data.length; i++) {
 
-var update_customer;
-var dem = 0;
+                service_type = "";
+                for (value of data[i].sevice_type) {
+                    service_type += "<p>" + value + "</p>";
+                }
+
+                if (data[i].status == "Chưa khám") {
+                    status_customer = `<button onclick="medical_diary_was_clinic_begin2('${data[i].identifier}')" > Mời vào khám </button>`;
+                    time_wait = "";
+                } else if (data[i].status == "Đã khám") {
+                    status_customer = "Hoàn thành";
+                    time_wait = "";
+                } else {
+                    status_customer = data[i].clinic + " - " + data[i].status ;
+                    time_wait =  data[i].time_wait
+                }
+
+                customer_info = customer_info + ` 
+                    <tr>
+                        <td class = "mobi"> ${data[i].identifier} </td> 
+                        <td class = "mobi"> ${data[i].vip} </td> 
+                        <td> ${data[i].name} </td> 
+                        <td class = "mobi"> ${data[i].birthday}</td> 
+                        <td class = "mobi"> ${data[i].sex}</td> 
+                        <td class = "mobi"> ${data[i].note}</td> 
+                        <td class = "mobi"> ${data[i].group_info}</td> 
+                        <td class = "mobi"> ${data[i].time_go}</td> 
+                        <td> ${service_type}</td> 
+                        <td>${status_customer} </td> 
+                        <td style=" text-align: center;">${time_wait} </td> 
+                        <td><a style="text-decoration:none; color: blue" href="https://phanluong.t-matsuoka.com/sp/sp.html?identifier=${data[i].identifier}"> Xem </a></td> 
+                    </tr>`;
+
+            }
+            document.getElementById("customer_info").innerHTML = customer_info;
+        });
+}
 
 function check_time_id() {
     dem ++;
+    console.log(dem);
     if(dem%10 != 0) {
         const endpoint1 = `${server_get}get_timeid_max${token_login}`;
         // console.log(endpoint1);
@@ -270,10 +337,13 @@ function check_time_id() {
 }
 
 function update_getCustomer_info_all() {
-    update_customer = setInterval(check_time_id, 15000);
+    update_customer = setInterval(check_time_id, 1000);
+    // console.log(dem);
 }
 
 function send_clinic_customer() {
+    clearInterval(update_customer);
+    update_customer = null;
     clinic = document.getElementById("clinic_send").value
     const endpoint = `${server}send_clinic_customer${token_login}customer_identifier=${identifier}&clinic=${clinic}`;
     // console.log(endpoint);
@@ -283,13 +353,16 @@ function send_clinic_customer() {
             getCustomer_info_all();
             openDate_medical_diary(today_string);
             alert(data);
-            //location.reload();
+            update_getCustomer_info_all();
         }).catch(function (erro) {
             alert("Không thể mời vào phòng này!!!");
+            update_getCustomer_info_all();
         });
 }
 
 function send_clinic_customer2(customer_id, clinic_new, clinic_id) {
+    clearInterval(update_customer);
+    update_customer = null;
     const endpoint = `${server}send_clinic_customer${token_login}customer_identifier=${customer_id}&clinic=${clinic_new}`;
     // console.log(endpoint);
     fetch(endpoint)
@@ -300,6 +373,7 @@ function send_clinic_customer2(customer_id, clinic_new, clinic_id) {
             check_clinic_new(clinic_id);
             alert(data);
             //location.reload();
+            update_getCustomer_info_all();
         });
 }
 
