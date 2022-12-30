@@ -317,7 +317,7 @@ function getCustomer_info_all_shearch() {
 
 function check_time_id() {
     dem ++;
-    console.log(dem);
+    // console.log(dem);
     if(dem%10 != 0) {
         const endpoint1 = `${server_get}get_timeid_max${token_login}`;
         // console.log(endpoint1);
