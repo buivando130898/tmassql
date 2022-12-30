@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/body.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@500&display=swap" rel="stylesheet">
+    <title>CSKH</title>
+    <link rel="shortcut icon" href="../static/img/logo.png" type="image/x-icon">
+
+</head>
+
+<body>
+
+    <div id="div_clinic_info">
+        <button onclick="close_clinic_info()">Close</button>
+        <div id="location_clinic">
+            <table id="location_clinic_table">
+
+            </table>
+        </div>
+    </div>
+
+    <div class="menuAll">
+        <ul class="menu">
+            <li class="title_hou">
+                <p><img src="../static/img/tm.png" alt=""> </p>
+                <div class="menu_button">
+                    <p><button class="btn3" onclick="logout()"
+                            style=" background-color: #f55134; line-height: 16px; padding: 7px 20px;"> Đăng
+                            xuất</button> </p>
+                    <p><button class="btn3 btn3_menu" onclick="display_menu()"
+                            style=" background-color: #61CE70; line-height: 16px; padding: 7px 20px;"> Menu</button>
+                    </p>
+                </div>
+            </li>
+            <div id="menu_all">
+                <li class="menu_item" style="background-color: #b8b8b8;"> <a style="color: black" href="./sp.html"> Tra
+                        cứu thông tin</a></li>
+                <li class="menu_item" id="location1000"> <a style="color: black" onclick="location_info_all(1000)"> Tất
+                        cả tầng</a></li>
+                <span id="location">
+                </span>
+            </div>
+        </ul>
+    </div>
+
+    <div class="info">
+        <div class="information_message_user" id="customer_info_div">
+            <div class="conten_message" id="conten_message" style="display:block">
+                <div>
+                    <div class="add_info">
+                        <h3>Thông tin:</h3>
+                        <table>
+                            <tr>
+                                <th>Mã KH</th>
+                                <th>Họ Tên</th>
+                                <th class="mobi" >Năm sinh</th>
+                                <th class="mobi" >Giới tính</th>
+                                <th>Liên hệ</th>
+                                <th class="mobi" >Ghi chú</th>
+                            </tr>
+                            <tr>
+                                <td id="identifier"></td>
+                                <td id="name"></td>
+                                <td class="mobi" id="birthday"></td>
+                                <td class="mobi"  id="sex"></td>
+                                <td id="phone"></td>
+                                <td class="mobi" id="note_customer"></td>
+                            </tr>
+                        </table>
+                        <h3>Lịch trình khám: <span id="time_day"> </span></h3>
+                        <div>
+                            <input placeholder="Phòng khám" type="text" class="input__style2" style="width:120px"
+                                id="clinic_send" name="clinic_send">
+                            <button class="btn3"
+                                style=" background-color: #61CE70; line-height: 16px; padding: 7px 20px;"
+                                onclick="send_clinic_customer()"> Mời vào phòng khám </button>
+                        </div>
+
+                        <div class="add_info">
+                            <div id="medical_diary"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="information_message_user" style="width:95%;">
+            <!-- <button class="btn3" onclick="reset_mysql()"> Reset</button> -->
+            <h3>Thông tin khách hàng</h3>
+            <div class="search">
+                <input class="input__style" type="text" id="name" name="name" value="">
+                <button class="btn3" style=" background-color: #61CE70; line-height: 16px; padding: 7px 20px;"> Tìm kiếm
+                </button>
+            </div>
+            <table id="customer_info">
+
+            </table>
+        </div>
+
+
+
+
+    </div>
+</body>
+
+</html>
+
+
+<script src="./sp.js"></script>
