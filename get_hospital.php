@@ -868,6 +868,29 @@ class api extends restful_api {
 		}
     }
 
+	function get_customer_date_shearch(){
+		if ($this->method == 'GET'  && tokenlogin($_GET["tokenlogin"]) != false){
+			if(isset($_GET["name"])) {
+				include('connect.php');
+				$time = date('Y-m-d');
+				$name = $_GET["name"];
+				if(isset($_GET["customer_date"])) {
+					$time = $_GET["customer_date"];
+				}
+				$sql = "SELECT * FROM `customer` WHERE name LIKE '%$name%' AND  identifier IN (SELECT DISTINCT(customer_identifier) FROM `medical_diary` WHERE schedule = '$time')";
+				mysqli_set_charset($conn, 'UTF8');
+				$result = $conn->query($sql);
+				if ($result->num_rows > 0) {
+					while($row = $result->fetch_assoc()) {
+						$data[] = $row + get_customer_date_clinic($row["identifier"], $time) ;
+					}
+				}
+				$conn->close();
+				$this->response(200, $data);
+			}
+		}
+    }
+
 
 	function get_customer_date_vip(){
 		if ($this->method == 'GET'  && tokenlogin($_GET["tokenlogin"]) != false){
