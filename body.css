@@ -1,6 +1,5 @@
 body {
     font-family: "Bai Jamjuree", sans-serif;
-    font-weight: 10;
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
@@ -333,7 +332,9 @@ tr:nth-child(even) {
 }
 
 @media only screen and (max-width: 800px) {
-
+    tr td {
+        font-weight: 400 !important;
+    }
 }
 
 @media only screen and (max-width: 550px) {
