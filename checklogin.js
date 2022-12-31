@@ -1,12 +1,10 @@
 server_get = "https://phanluong.t-matsuoka.com/api/get/login.php/";
-acc_check = "";
-if (localStorage['acc_admin'] == undefined) {
+if (localStorage['acc_clinic'] == undefined) {
     window.location = "./login.html";
 } else {
-	acc_check =  localStorage['acc_admin'];
-	token_check = localStorage["token_login_admin"];
+	acc_check =  localStorage['acc_clinic'];
+	token_check = localStorage["token_login_clinic"];
 }
- 
 
 const endpoint = `${server_get}/tokenlogin_check?acc=${acc_check}&token=${token_check}`;
 		console.log(endpoint);
