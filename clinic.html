@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/body.css">
+    <link rel="stylesheet" href="../static/css/shearch.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@500&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <title>Quản lý</title>
+    <link rel="shortcut icon" href="../static/img/logo.png" type="image/x-icon">
+    <script src="./checklogin.js"></script>
+</head>
+
+<body  id="main">
+
+    <div id="div_service_type_info">
+        <button onclick="close_info_service()">Close</button>
+        <div style="margin: 10px 0px;">
+            <div style="margin: 10px 0px;">
+                <span id="div_schedule"></span>
+                <input placeholder="stt" readonly="readonly" style="display: none;" class="input__style2" type="text"
+                    id="clinic_stt" name="clinic_stt" value="">
+                Phòng:
+                <input placeholder="" style="width:80px" class="input__style2" type="text" id="clinic_id"
+                    name="clinic_id" value="">
+                Tên:
+                <input placeholder="" style="width:150px" class="input__style2" type="text" id="clinic_name"
+                    name="clinic_name" value="">
+                Tầng:
+                <input placeholder="" style="width:80px" class="input__style2" type="text" id="clinic_location"
+                    name="clinic_location" value="">
+
+                <input placeholder="" style="width:60" class="btn3" type="submit" id="clinic_status"
+                    name="clinic_status" value="" onclick="updateClinic_stautus()">
+                <input placeholder="Ghi chú" style="width:60" class="input__style2" type="text" id="clinic_note"
+                    name="clinic_note" value="">
+                <span><button class="btn3" id="update_service2" onclick="update_clinic2()">Cập nhật</button></span>
+            </div>
+
+            <div>
+                <input placeholder="stt" readonly="readonly" style="display: none;" class="input__style2" type="text"
+                    id="service_stt" name="service_stt" value="">
+                <section class="filter-wrapper">
+                    <span class="keyword-wrapper">
+                        DV:
+                        <input class="input__style2" type="text" id="service_name_setting" style="width:320px"
+                            autocomplete="off" placeholder="Tên dịch vụ" required />
+                        <a href="" target="_blank" id="keyword-button"><i class="fa fa-search-plus"></i></a>
+                    </span>
+                    <ul id="filter-select" class="filter-select no-value">
+                    </ul>
+
+                    Nhóm:
+                    <input placeholder="" class="input__style2" style="width:200px" type="text" id="group_service"
+                        name="group_service" value="">
+
+                </section>
+
+
+                Mã:
+                <input placeholder="" class="input__style2" type="text" id="service_id_setting"
+                    name="service_id_setting" value="">
+                <!-- Trạng thái: -->
+                <!-- <input placeholder="" class="input__style2" type="text" id="service_status" name="service_status" value=""> -->
+                Thời gian khám:
+                <input placeholder="" style="width:95px" class="input__style2" type="text" id="intendTime_setting"
+                    name="intendTime_setting" value="">
+                <!-- Thời gian KQ:
+                <input placeholder="" class="input__style2" type="text" id="service_resultTime" name="service_resultTime" value=""> -->
+                Note:
+                <input placeholder="" class="input__style2" type="text" id="service_note" name="service_note" value="">
+                Phòng:
+                <input placeholder="" class="input__style2" type="text" id="service_clinic_id" name="service_clinic_id"
+                    value="" style="margin-bottom: 8px;">
+                <span><button class="btn3" onclick="addService2()">Thêm dịch vụ</button></span>
+                <span><button class="btn3" onclick="update_service_clinic2()">Cập nhật</button></span>
+            </div>
+        </div>
+        <div class="table_info_new">
+            <table id="service_id_info">
+            </table>
+        </div>
+    </div>
+
+    <div class="menuAll">
+        <ul class="menu">
+            <li class="title_hou">
+                <p><img src="../static/img/tm.png" alt=""> </p>
+                <div class="menu_button">
+                    <p><button class="btn3" onclick="logout()"
+                            style=" background-color: #f55134; line-height: 16px; padding: 7px 20px;"> Đăng
+                            xuất</button> </p>
+                    <p><button class="btn3 btn3_menu" onclick="display_menu()"
+                            style=" background-color: #61CE70; line-height: 16px; padding: 7px 20px;"> Menu</button>
+                    </p>
+                </div>
+            </li>
+            <div id="menu_all">
+                <li class="menu_item"> <a style="color: black" href="./customer.html"> Nhập thông tin khách hàng </a>
+                </li>
+                <li class="menu_item"> <a style="color: black" href="./service.html"> Nhập thông tin dịch vụ khám </a>
+                </li>
+                <li class="menu_item"> <a style="color: black" href="./service_type.html"> Nhập thông tin gói khám </a>
+                </li>
+                <li class="menu_item" style="background-color: #b8b8b8;"> <a style="color: black" href="./clinic.html">
+                        Nhập thông tin phòng khám </a></li>
+                <li class="menu_item"> <a style="color: black" href="./doctor.html"> Nhập thông tin bác sĩ </a></li>
+                <li class="menu_item"> <a style="color: black" href="./check.html"> Tra cứu thông tin</a></li>
+                <!-- <li class="menu_item"> <a style="color: black" href="./checkvip.html">         Khách hàng vip</a></li> -->
+                <li class="menu_item"> <a style="color: black" href="./statistics.html"> Thống kê</a></li>
+                <li class="menu_item"> <a style="color: black" href="./account.html"> Quản lý tài khoản</a></li>
+
+
+            </div>
+        </ul>
+    </div>
+
+    <div class="info">
+        <div class="information_message_user">
+            <button class="btn3" onclick="openAdd()"> Thêm Thông tin </button>
+            <div class="conten_message" id="conten_message" style="display:none">
+                <div action="">
+
+                    <h3>Thông tin phòng</h3>
+
+                    <div class="add_info">
+                        <label>Mã Phòng:</label><br>
+                        <input class="input__style" type="text" id="identifier" name="identifier" value="">
+                    </div>
+
+                    <div class="add_info">
+                        <label>Tên phòng:</label><br>
+                        <input class="input__style" type="text" id="name" name="name" value="">
+                    </div>
+
+                    <div class="add_info">
+                        <label>Địa điểm (tầng):</label><br>
+                        <input class="input__style" type="text" id="location" name="location" value="">
+                    </div>
+
+                    <h3>Khám bệnh</h3>
+                    <div class="add_info">
+                        <label>Ghi chú:</label><br>
+                        <textarea class="input__style" type="text" id="note" name="note" value="" rows="3"
+                            style="width:395px; height:auto;"> </textarea>
+                    </div>
+                    <div class="add_info">
+                        <button class="btn3" onclick="addClinic()"> Xác nhận</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="information_message_user" style="width:95%; ">
+            <button class="btn3" onclick="openAdd2()"> Thông tin phòng khám chính</button>
+            <div style="display:none; margin-top: 10px;" id="info_clinic_main">
+                <div class="search">
+                    <input class="input__style" type="text" id="search" name="search" value="">
+                    <button class="btn3" style=" background-color: #61CE70; line-height: 16px; padding: 7px 20px;"> Tìm
+                        kiếm </button>
+                </div>
+                <table id="clinic_info">
+                </table>
+            </div>
+        </div>
+
+        <div class="information_message_user" style="width:95%; ">
+            <button class="btn3" onclick="openAdd3()"> Thông tin lịch hoạt động phòng khám</button>
+            <div style="display:none; margin-top: 10px;" id="info_clinic_status">
+                <h3>Import phòng khám: (.CSV) &emsp; <span
+                        style="font-size: 12px; cursor: pointer; text-decoration:underline;" onclick="ex_file_excel()">
+                        (Tải xuống File mẫu)</span></h3>
+                <p style="color: #25356d;">
+                    Lưu ý: file không chứa dấu phẩy, định dạng thời gian là Năm-tháng-ngày (yyyy-mm-dd)
+                </p>
+                <div class="add_info">
+                    <div>
+                        <input type="file" id="fileUpload" />
+                    </div>
+                    <div style="margin-top: 20px;">
+                        <input class="btn3" type="button" id="upload" value="Upload" onclick="Upload()" />
+                    </div>
+                </div>
+
+                <div class="add_info" id="import_notification"
+                    style="border-bottom: 2px solid #355895; padding-bottom: 20px;">
+                </div>
+
+                <h3>Lịch hoạt động:</h3>
+
+                <div style="margin-bottom: 10px">
+                    <button class="btn3" onclick="reset_mysql_clinic()"> Xóa tất cả dữ liệu</button>
+                </div>
+
+                <div style="margin-top: 0px;">
+                    <input class="input__style2" style="width:150px" type="date" id="clinic_status_date"
+                        name="clinic_status_date" value="">
+                    <button class="btn3" style=" background-color: #61CE70; line-height: 16px; padding: 7px 20px;"
+                        onclick="getClinic_info_status()"> Tìm kiếm </button>
+                    <!-- <button class="btn3" style=" background-color: #61CE70; line-height: 16px; padding: 7px 20px;" onclick="getClinic_info_status_all()" > Hiển thị tất cả</button>  -->
+                    <button class="btn3" style=" background-color: #61CE70; line-height: 16px; padding: 7px 20px;"
+                        onclick="delete_clinic_status_day(false)"> Xóa dữ liệu ngày</button>
+                </div>
+
+                <div style="margin: 10px 0px;">
+                    <span id="div_schedule"></span>
+                    <input placeholder="" readonly="readonly" style="display: none;" class="input__style2" type="text"
+                        id="clinic_status_stt" name="clinic_status_stt" value="">
+                    Mã phòng:
+                    <input placeholder="" style="width:120px" class="input__style2" type="text" id="clinic_status_id"
+                        name="clinic_status_id" value="">
+                    Tên phòng:
+                    <input placeholder="" style="width:150px" class="input__style2" type="text" id="clinic_status_name"
+                        name="status_name" value="">
+                    Bác sĩ:
+                    <input placeholder="" style="width:150px" class="input__style2" type="text"
+                        id="clinic_status_doctor" name="clinic_status_doctor" value="">
+                    Ngày khám:
+                    <input class="input__style2" style="width:135px; font-size: 14px;" type="date"
+                        id="clinic_status_day" name="clinic_status_day" value="">
+                    Thời gian:
+                    <input class="input__style2" style="font-size: 14px;" type="text" id="clinic_status_tine_all"
+                        name="clinic_status_tine_all" value="">
+                    Ghi chú:
+                    <input class="input__style2" style="width:135px; font-size: 14px;" type="text"
+                        id="clinic_status_note" name="clinic_status_note" value="">
+
+                    &ensp;
+                    <span><button class="btn3" onclick="add_clinic_status()">Thêm</button></span>
+                    <span><button class="btn3" onclick="update_clinic_status2()">Cập nhật</button></span>
+                </div>
+
+                <table id="clinic_info_status">
+                </table>
+
+                <div>
+
+                    <table id="clinic_status_all"> </table>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</body>
+
+</html>
+
+<script src="../static/js/ad.js"></script>
+<script src="../static/js/get_clinic.js"></script>
+<script src="../static/js/shearch.js"></script>

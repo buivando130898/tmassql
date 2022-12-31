@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/body.css">
+    <link rel="stylesheet" href="../static/css/shearch.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@500&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <title>Quản lý</title>
+    <link rel="shortcut icon" href="../static/img/logo.png" type="image/x-icon">
+    <script src="./checklogin.js"></script>
+</head>
+
+<body  id="main">
+
+    <div id="div_service_type_info">
+        <button onclick="close_info_service()">Close</button>
+        <div style="margin: 10px 0px;">
+            <div style="margin-bottom: 8px;">
+                Gói:
+                <input placeholder="Mã gói" readonly="readonly" class="input__style2" type="text"
+                    id="identifier_setting" name="name" value="">
+                <input placeholder="Tên gói khám" readonly="readonly" style="width:220px" class="input__style2"
+                    type="text" id="identifier_name_setting" name="name" value="">
+            </div>
+            <input placeholder="" readonly="readonly" class="input__style2" type="text" id="service_stt"
+                name="service_stt" value="" style="display: none">
+            <!-- <input placeholder="" style="width:125px" class="input__style2" type="text" id="service_name_setting" autocomplete="off"  name="service_name_setting" required> -->
+            <section class="filter-wrapper">
+                <span class="keyword-wrapper">
+                    DV:
+                    <input class="input__style2" type="text" id="service_name_setting" style="width:320px"
+                        autocomplete="off" placeholder="Tên dịch vụ" required />
+                    <a href="" target="_blank" id="keyword-button"><i class="fa fa-search-plus"></i></a>
+                </span>
+                <ul id="filter-select" class="filter-select no-value">
+                </ul>
+            </section>
+            Mã:
+            <input placeholder="" class="input__style2" type="text" id="service_id_setting" name="service_id_setting"
+                value="">
+            Thời gian:
+            <input placeholder="" class="input__style2" type="text" id="intendTime_setting" name="intendTime_setting"
+                value="">
+            Ngày:
+            <input placeholder="" class="input__style2" type="text" id="day_setting" name="day_setting" value="">
+            Thứ tự:
+            <input placeholder="" class="input__style2" type="text" id="location_setting" name="location_setting"
+                value="">
+            Điều kiến:
+            <input placeholder="" class="input__style2" type="text" id="proviso_setting" name="proviso_setting"
+                value="">
+            DV sau:
+            <input placeholder="" class="input__style2" type="text" id="together_setting" name="together_setting"
+                value="">
+            &ensp;
+            <span><button class="btn3" onclick="add_service_type()">Thêm</button></span>
+            <span><button class="btn3" id="update_service2" onclick="update_service_type()">Cập nhật</button></span>
+        </div>
+        <div class="table_info_new">
+            <table id="service_id_info">
+            </table>
+        </div>
+    </div>
+
+    <div class="menuAll">
+        <ul class="menu">
+            <li class="title_hou">
+                <p><img src="../static/img/tm.png" alt=""> </p>
+                <div class="menu_button">
+                    <p><button class="btn3" onclick="logout()"
+                            style=" background-color: #f55134; line-height: 16px; padding: 7px 20px;"> Đăng
+                            xuất</button> </p>
+                    <p><button class="btn3 btn3_menu" onclick="display_menu()"
+                            style=" background-color: #61CE70; line-height: 16px; padding: 7px 20px;"> Menu</button>
+                    </p>
+                </div>
+            </li>
+            <div id="menu_all">
+                <li class="menu_item"> <a style="color: black" href="./customer.html"> Nhập thông tin khách hàng </a>
+                </li>
+                <li class="menu_item"> <a style="color: black" href="./service.html"> Nhập thông tin dịch vụ khám </a>
+                </li>
+                <li class="menu_item" style="background-color: #b8b8b8;"> <a style="color: black"
+                        href="./service_type.html"> Nhập thông tin gói khám </a></li>
+                <li class="menu_item"> <a style="color: black" href="./clinic.html"> Nhập thông tin phòng khám </a></li>
+                <li class="menu_item"> <a style="color: black" href="./doctor.html"> Nhập thông tin bác sĩ </a></li>
+                <li class="menu_item"> <a style="color: black" href="./check.html"> Tra cứu thông tin</a></li>
+                <!-- <li class="menu_item"> <a style="color: black" href="./checkvip.html">         Khách hàng vip</a></li> -->
+                <li class="menu_item"> <a style="color: black" href="./statistics.html"> Thống kê</a></li>
+                <li class="menu_item"> <a style="color: black" href="./account.html"> Quản lý tài khoản</a></li>
+
+
+            </div>
+        </ul>
+    </div>
+
+    <div class="info">
+        <div class="information_message_user">
+            <button class="btn3" onclick="openAdd()"> Thêm Thông tin </button>
+            <div class="conten_message" id="conten_message" style="display:none">
+                <!--  Excel import   -->
+                <h3>Import gói khám: (.CSV) &emsp; <span
+                        style="font-size: 12px; cursor: pointer; text-decoration:underline;" onclick="ex_file_excel()">
+                        (Tải xuống File mẫu)</span></h3>
+                <p style="color: #25356d;">
+                    Lưu ý: file không chứa dấu phẩy, định dạng thời gian là Năm-tháng-ngày (yyyy-mm-dd)
+                </p>
+                <div class="add_info">
+                    <div>
+                        <input type="file" id="fileUpload" />
+                    </div>
+                    <div style="margin-top: 20px;">
+                        <input class="btn3" type="button" id="upload" value="Upload" onclick="Upload()" />
+                    </div>
+                </div>
+                <div class="add_info" id="import_notification">
+                </div>
+
+                <!-- <div action="">
+                    <h3>Thông tin</h3>
+                    <div class="add_info">
+                        <label >Tên gói khám:</label><br>
+                        <input class="input__style" type="text" id="name" name="name" value="">
+                    </div>
+
+                    <div class="add_info">
+                        <label >Mã gói khám:</label><br>
+                        <input class="input__style" type="text" id="identifier" name="identifier" value="">
+                    </div>
+
+                    <h3>Khám bệnh</h3>
+                    
+                    <div class="add_info">
+                        <label >Quy trình khám:</label><br>
+                        <select class="input__style" name="service" id="service">
+                        </select>
+                    </div>
+
+                    <div class="add_info">
+                        
+                        <div id="addService">
+                            <div id="addService0">
+                                <button class="btn3" onclick="addService(0)"  style=" background-color: #61CE70; line-height: 16px; padding: 6px 20px;"  > Thêm </button> 
+                                <button class="btn3" onclick="addService_row(0)"  style=" background-color: #61CE70; line-height: 16px; padding: 6px 20px;"  > Thêm dưới</button> 
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="add_info">
+                        <label >Ghi chú:</label><br>
+                        <textarea class="input__style" type="text" id="note" name="note" value="" rows="3" style="width:395px; height:auto;"> </textarea>
+                    </div>
+                    <div class="add_info">
+                        <button class="btn3" onclick="addService_type()"> Xác nhận </button>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+
+        <div class="information_message_user" style="width:95%;">
+            <h3>Thông tin gói khám</h3>
+            <div class="search">
+                <div style="margin-bottom: 10px">
+                    <button class="btn3" onclick="reset_mysql_service_type()"> TRUNCATE All Gói khám</button>
+                </div>
+                <input class="input__style" type="text" id="name" name="name" value="">
+                <button class="btn3" style=" background-color: #61CE70; line-height: 16px; padding: 7px 20px;"> Tìm kiếm
+                </button>
+            </div>
+            <table id="service_type_info">
+            </table>
+        </div>
+
+    </div>
+</body>
+
+</html>
+
+<script src="../static/js/ad.js"></script>
+<script src="../static/js/get_service_type.js"></script>
+<script src="../static/js/shearch.js"></script>

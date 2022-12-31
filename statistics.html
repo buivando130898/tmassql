@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="application/vnd.ms-excel; charset=UTF-8">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/body.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@500&display=swap" rel="stylesheet">
+    <title>Quản lý</title>
+    <link rel="shortcut icon" href="../static/img/logo.png" type="image/x-icon">
+    <script src="./checklogin.js"></script>
+
+</head>
+
+<body  id="main">
+    <div class="menuAll">
+        <ul class="menu">
+            <li class="title_hou">
+                <p><img src="../static/img/tm.png" alt=""> </p>
+                <div class="menu_button">
+                    <p><button class="btn3" onclick="logout()"
+                            style=" background-color: #f55134; line-height: 16px; padding: 7px 20px;"> Đăng
+                            xuất</button> </p>
+                    <p><button class="btn3 btn3_menu" onclick="display_menu()"
+                            style=" background-color: #61CE70; line-height: 16px; padding: 7px 20px;"> Menu</button>
+                    </p>
+                </div>
+            </li>
+            <div id="menu_all">
+                <li class="menu_item"> <a style="color: black" href="./customer.html"> Nhập thông tin khách hàng </a>
+                </li>
+                <li class="menu_item"> <a style="color: black" href="./service.html"> Nhập thông tin dịch vụ khám </a>
+                </li>
+                <li class="menu_item"> <a style="color: black" href="./service_type.html"> Nhập thông tin gói khám </a>
+                </li>
+                <li class="menu_item"> <a style="color: black" href="./clinic.html"> Nhập thông tin phòng khám </a></li>
+                <li class="menu_item"> <a style="color: black" href="./doctor.html"> Nhập thông tin bác sĩ </a></li>
+                <li class="menu_item"> <a style="color: black" href="./check.html"> Tra cứu thông tin</a></li>
+                <!-- <li class="menu_item"> <a style="color: black" href="./checkvip.html">         Khách hàng vip</a></li> -->
+                <li class="menu_item" style="background-color: #b8b8b8;"> <a style="color: black"
+                        href="./statistics.html"> Thống kê </a></li>
+                <li class="menu_item"> <a style="color: black" href="./account.html"> Quản lý tài khoản </a></li>
+
+            </div>
+        </ul>
+    </div>
+
+    <div id="div_service_type_info">
+        <button onclick="close_info_service()">Close</button>
+        <h3 id="clinic_name_title"></h3>
+        <table id="table_clinic_expected"></table>
+        <button class="btn3" onclick="tableToCSV()" style="margin-top: 10px;">Xuất File Excel (.CSV)</button>
+
+    </div>
+
+    <div class="info">
+        <div class="information_message_user">
+
+            <div class="information_message_user">
+                <div id="schedule_info_table_div">
+                    <input class="input__style2" style="width:150px" type="date" id="statistics_date"
+                        name="statistics_date" value="">
+                    <button class="btn3" onclick="check_statistics2()">Check</button>
+                </div>
+
+                <h3>Phòng khám dự kiến</h3>
+                <button class="btn3" onclick="clinic_expected_check()">Cập nhật</button>
+                <table id="clinic_expected_id"></table>
+
+                <h3>Dịch vụ</h3>
+                <table id="service_statistics">
+                </table>
+
+                <h3>Phòng khám thực tế</h3>
+                <table id="clinic_statistics">
+                </table>
+
+            </div>
+
+            <div class="information_message_user">
+                <div id="schedule_info_table_div">
+                    <h3>Thống kê ngày khám<menu></menu>
+                    </h3>
+                    <div class="search">
+                        <input class="input__style" type="text" id="name_id" name="name" value="">
+                        <button class="btn3" style=" background-color: #61CE70; line-height: 16px; padding: 7px 20px;">
+                            Tìm kiếm </button>
+                    </div>
+                    <table id="schedule_info_table">
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+
+<script src="../static/js/statistics.js"></script>
+
+<script type="text/javascript">
+
+</script>

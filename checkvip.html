@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/body.css">
+    <link rel="stylesheet" href="../static/css/shearch.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@500&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <title>Quản lý</title>
+    <link rel="shortcut icon" href="../static/img/logo.png" type="image/x-icon">
+    <script src="./checklogin.js"></script>
+</head>
+
+<body  id="main">
+
+    <div id="div_service_type_info">
+        <button onclick="close_info_service()">Close</button>
+        <div style="margin: 10px 0px;">
+            <div style="margin: 10px 0px;">
+                <span id="div_schedule"></span>
+                <input placeholder="stt" readonly="readonly" style="width:50px" class="input__style2" type="text"
+                    id="stt_new" name="stt_new" value="">
+                <input placeholder="Mã khách hàng" readonly="readonly" style="width:120px" class="input__style2"
+                    type="text" id="customer_id" name="customer_id" value="">
+                <input placeholder="Họ tên" style="width:150px" class="input__style2" type="text" id="customer_name"
+                    name="customer_name" value="">
+                <input class="input__style" style="width:115px; font-size: 14px;" type="date" id="birthday_new"
+                    name="birthday_new" value="">
+                <input placeholder="Giới tính" style="width:60" class="input__style2" type="text" id="sex_new"
+                    name="sex_new" value="">
+                <span><button class="btn3" id="update_service2" onclick="update_customer()">Thay đổi</button></span>
+            </div>
+
+            <section class="filter-wrapper">
+                <span class="keyword-wrapper">
+                    DV:
+                    <input class="input__style2" type="text" id="service_name_setting" style="width:320px"
+                        autocomplete="off" placeholder="Tên dịch vụ" required />
+                    <a href="" target="_blank" id="keyword-button"><i class="fa fa-search-plus"></i></a>
+                </span>
+                <ul id="filter-select" class="filter-select no-value">
+                </ul>
+            </section>
+
+            <input placeholder="Vip" style="width:40px" class="input__style2" type="text" id="vip_setting"
+                name="vip_setting" value="">
+            <input placeholder="Mã DV" class="input__style2" type="text" id="service_id_setting"
+                name="service_id_setting" value="">
+            <input placeholder="Tên DV" style="width:125px" class="input__style2" type="text" id="service_name_setting"
+                name="service_name_setting" value="">
+            <input placeholder="Ngày khám" style="width:130px" class="input__style2" type="date" id="schedule_setting"
+                name="day_setting" value="">
+            <input placeholder="Trạng thái" class="input__style2" type="text" id="status_setting" name="status_setting"
+                value="">
+            <input placeholder="Phòng khám" style="width:95px" class="input__style2" type="text" id="clinic_setting"
+                name="clinic_setting" value="">
+            <input placeholder="Thời gian" class="input__style2" type="text" id="intendTime_setting"
+                name="intendTime_setting" value="">
+            <input placeholder="Thứ tự" class="input__style2" type="text" id="location_setting" name="location_setting"
+                value="">
+            <input placeholder="Điều kiện" class="input__style2" type="text" id="proviso_setting" name="proviso_setting"
+                value="">
+            <input placeholder="Khám cùng" class="input__style2" type="text" id="together_setting"
+                name="together_setting" value="">
+
+            <span><button class="btn3" onclick="add_diary_service()">Thêm</button></span>
+            <span><button class="btn3" id="update_diary_service" onclick="">Cập nhật</button></span>
+        </div>
+        <div class="table_info_new">
+            <table id="service_id_info">
+            </table>
+        </div>
+    </div>
+
+    <div class="menuAll">
+        <ul class="menu">
+            <li class="title_hou">
+                <p><img src="../static/img/tm.png" alt=""> </p>
+                <div class="menu_button">
+                    <p><button class="btn3" onclick="logout()"
+                            style=" background-color: #f55134; line-height: 16px; padding: 7px 20px;"> Đăng
+                            xuất</button> </p>
+                    <p><button class="btn3 btn3_menu" onclick="display_menu()"
+                            style=" background-color: #61CE70; line-height: 16px; padding: 7px 20px;"> Menu</button>
+                    </p>
+                </div>
+            </li>
+            <div id="menu_all">
+                <li class="menu_item"> <a style="color: black" href="./customer.html"> Nhập thông tin khách hàng </a>
+                </li>
+                <li class="menu_item"> <a style="color: black" href="./service.html"> Nhập thông tin dịch vụ khám </a>
+                </li>
+                <li class="menu_item"> <a style="color: black" href="./service_type.html"> Nhập thông tin gói khám </a>
+                </li>
+                <li class="menu_item"> <a style="color: black" href="./clinic.html"> Nhập thông tin phòng khám </a></li>
+                <li class="menu_item"> <a style="color: black" href="./doctor.html"> Nhập thông tin bác sĩ </a></li>
+                <li class="menu_item"> <a style="color: black" href="./check.html"> Tra cứu thông tin</a></li>
+                <!-- <li class="menu_item" style = "background-color: #b8b8b8;"  > <a style="color: black" href="./checkvip.html">          Khách hàng vip</a></li> -->
+                <li class="menu_item"> <a style="color: black" href="./statistics.html"> Thống kê</a></li>
+                <li class="menu_item"> <a style="color: black" href="./account.html"> Quản lý tài khoản</a></li>
+
+
+
+            </div>
+        </ul>
+    </div>
+
+    <div class="info">
+        <div class="information_message_user" id="customer_info_div">
+            <div class="conten_message" id="conten_message" style="display:block">
+                <div>
+                    <div class="add_info">
+                        <h3>Thông tin:</h3>
+                        <table>
+                            <tr>
+                                <th>Mã KH</th>
+                                <th>Họ Tên</th>
+                                <th>Năm sinh</th>
+                                <th>Giới tính</th>
+                                <th>Ghi chú</th>
+                            </tr>
+                            <tr>
+                                <td id="identifier"></td>
+                                <td id="name"></td>
+                                <td id="birthday"></td>
+                                <td id="sex"></td>
+                                <td id="note_customer"></td>
+                            </tr>
+                        </table>
+                        <h3> Khám bệnh:</h3>
+
+                        <button class="btn3" onclick="openAddSchedule()"> Thêm lịch khám </button>
+
+                        <div id="addSchedule" style="display: none; padding-top: 15px;">
+
+                            <div id="addEdit_Schedule" style="display: none; padding-top: 15px;">
+                                <div class="add_info">
+                                    <label>Ngày khám:</label><br>
+                                    <input class="input__style" type="date" id="schedule" name="schedule" value="">
+                                    <button class="btn3" onclick=""> Thay đổi </button>
+                                </div>
+                                <div class="add_info">
+                                    <label>Gói khám:</label><br>
+                                    <select class="input__style" name="service_type_info" id="service_type_info">
+                                    </select>
+                                    <button class="btn3" onclick="addService_type_customer()"
+                                        style=" background-color: #61CE70; line-height: 16px; padding: 6px 20px;"> Thêm
+                                        gói khám</button>
+                                </div>
+                                <div class="add_info">
+                                    <label>Dịch vụ khám:</label><br>
+                                    <select class="input__style" name="service" id="service">
+                                    </select>
+                                </div>
+                                <div class="add_info">
+                                    <div id="addService">
+                                        <div id="addService0">
+                                            <button class="btn3" onclick="addService(0)"
+                                                style=" background-color: #61CE70; line-height: 16px; padding: 6px 20px;">
+                                                Thêm </button>
+                                            <button class="btn3" onclick="addService_row(0)"
+                                                style=" background-color: #61CE70; line-height: 16px; padding: 6px 20px;">
+                                                Thêm dưới</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="add_info">
+                                    <label>Ghi chú:</label><br>
+                                    <textarea class="input__style" type="text" id="note" name="note" value="" rows="3"
+                                        style="width:395px; height:auto;"> </textarea>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <h3> Lịch khám dự kiến cho khách hàng vip:</h3>
+                    <div id="medical_diary">
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="information_message_user">
+            <button class="btn3" onclick="getSchedule_info_table()"> Thông tin lịch khám </button>
+            <div id="schedule_info_table_div" style="display:none">
+                <div class="search">
+                    <input class="input__style" type="text" id="name_id" name="name" value="">
+                    <button class="btn3" style=" background-color: #61CE70; line-height: 16px; padding: 7px 20px;"> Tìm
+                        kiếm </button>
+                </div>
+                <table id="schedule_info_table">
+                </table>
+            </div>
+
+        </div>
+
+        <div class="information_message_user">
+            <h3>Thông tin khách hàng</h3>
+            <div class="search">
+                <div style="margin-bottom: 10px">
+                    <button class="btn3" onclick="reset_mysql_customer_vip()"> Reset dữ liệu toàn bộ khách hàng</button>
+                </div>
+                <input class="input__style2" placeholder="Mã khách hàng" style="width:150px" type="text" id="name"
+                    name="name" value="">
+                <button class="btn3" style=" background-color: #61CE70; line-height: 16px; padding: 7px 20px;"> Tìm kiếm
+                </button>
+                <div style="margin-top: 10px;">
+                    <input class="input__style2" style="width:150px" type="date" id="customer_date" name="customer_date"
+                        value="">
+                    <button class="btn3" style=" background-color: #61CE70; line-height: 16px; padding: 7px 20px;"
+                        onclick="getCustomer_info_all()"> Tìm kiếm </button>
+                </div>
+            </div>
+            <div style="margin-top: 15px">
+                <button class="btn3" style=" background-color: #61CE70; line-height: 16px; padding: 7px 20px;"
+                    onclick="runAll()"> Sắp xếp tất cả.</button>
+                <p id="run_noti"></p>
+            </div>
+            <table id="customer_info">
+            </table>
+        </div>
+
+
+
+
+    </div>
+</body>
+
+</html>
+
+<script src="../static/js/ad.js"></script>
+<script src="../static/js/checkvip.js"></script>
+<script src="../static/js/shearch.js"></script>

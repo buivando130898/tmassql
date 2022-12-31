@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/body.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@500&display=swap" rel="stylesheet">
+    <title>Quản lý</title>
+    <link rel="shortcut icon" href="../static/img/logo.png" type="image/x-icon">
+    <script src="./checklogin.js"></script>
+</head>
+
+<body  id="main">
+
+    <div class="menuAll">
+        <ul class="menu">
+            <li class="title_hou">
+                <p><img src="../static/img/tm.png" alt=""> </p>
+                <div class="menu_button">
+                    <p><button class="btn3" onclick="logout()"
+                            style=" background-color: #f55134; line-height: 16px; padding: 7px 20px;"> Đăng
+                            xuất</button> </p>
+                    <p><button class="btn3 btn3_menu" onclick="display_menu()"
+                            style=" background-color: #61CE70; line-height: 16px; padding: 7px 20px;"> Menu</button>
+                    </p>
+                </div>
+            </li>
+            <div id="menu_all">
+                <li class="menu_item"> <a style="color: black" href="./customer.html"> Nhập thông tin khách hàng </a>
+                </li>
+                <li class="menu_item"> <a style="color: black" href="./service.html"> Nhập thông tin dịch vụ khám </a>
+                </li>
+                <li class="menu_item"> <a style="color: black" href="./service_type.html"> Nhập thông tin gói khám </a>
+                </li>
+                <li class="menu_item"> <a style="color: black" href="./clinic.html"> Nhập thông tin phòng khám </a></li>
+                <li class="menu_item" style="background-color: #b8b8b8;"> <a style="color: black" href="./doctor.html">
+                        Nhập thông tin bác sĩ </a></li>
+                <li class="menu_item"> <a style="color: black" href="./check.html"> Tra cứu thông tin</a></li>
+                <!-- <li class="menu_item"> <a style="color: black" href="./checkvip.html">         Khách hàng vip</a></li> -->
+                <li class="menu_item"> <a style="color: black" href="./statistics.html"> Thống kê</a></li>
+                <li class="menu_item"> <a style="color: black" href="./account.html"> Quản lý tài khoản</a></li>
+
+
+
+            </div>
+        </ul>
+    </div>
+
+    <div class="info">
+        <div class="information_message_user">
+            <button class="btn3" onclick="openAdd()"> Thêm Thông tin </button>
+            <div class="conten_message" id="conten_message" style="display:none">
+
+                <div action="">
+                    <h3>Thông tin cá nhân</h3>
+                    <div class="add_info">
+                        <label>Học hàm. Họ tên:</label><br>
+                        <input class="input__style" type="text" id="name" name="name" value="">
+                    </div>
+                    <div class="add_info">
+                        <label>Ngày sinh:</label><br>
+                        <input class="input__style" type="date" id="birthday" name="birthday" value="">
+                    </div>
+
+                    <div class="add_info">
+                        <label>Giới tính:</label><br>
+                        <select class="input__style" name="sex" id="sex">
+                            <option value="Nam">Nam</option>
+                            <option value="nữ">Nữ</option>
+                        </select>
+                    </div>
+
+                    <h3>Liên hệ:</h3>
+                    <div class="add_info">
+                        <label>Số điện thoại:</label><br>
+                        <input class="input__style" type="tel" id="phone" name="phone" value=""
+                            pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
+                    </div>
+
+                    <h3>Khám bệnh</h3>
+                    <label>Chuyên môn</label>
+                    <div class="add_info">
+                        <input class="input__style" name="position_type" id="position_type" type="text">
+                    </div>
+
+                    <div class="add_info">
+                        <label>Ghi chú:</label><br>
+                        <textarea class="input__style" type="text" id="note" name="note" value="" rows="3"
+                            style="width:395px; height:auto;"> </textarea>
+
+                    </div>
+                    <div class="add_info">
+                        <button class="btn3" onclick="addDoctor()"> Xác nhận </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="information_message_user" style="width:95%;">
+            <h3>Thông tin loại hình khám</h3>
+            <div class="search">
+                <input class="input__style2" style="width:200px" type="text" placeholder="Họ và tên" id="key_search"
+                    name="key_search" value="">
+                <button class="btn3" style=" background-color: #61CE70; line-height: 16px; padding: 7px 20px;"
+                    onclick="get_shearch_info()"> Tìm kiếm </button>
+            </div>
+            <div style="margin-bottom:8px">
+                <input placeholder="" style="width:40px; display: none;" class="input__style2" type="text"
+                    id="stt_doctor" name="stt_doctor" value="">
+                Họ tên:
+                <input placeholder="" class="input__style2" style="width:150px" type="text" id="name_doctor"
+                    name="name_doctor" value="">
+                Ngày sinh:
+                <input placeholder="Ngày khám" style="width:130px" class="input__style2" type="date"
+                    id="birthday_doctor" name="birthday_doctor" value="">
+                Giới tính:
+                <input placeholder="" class="input__style2" type="text" id="sex_doctor" name="sex_doctor" value="">
+                Liên hệ:
+                <input placeholder="" style="width:95px" class="input__style2" type="text" id="phone_doctor"
+                    name="phone_doctor" value="">
+                Chuyên môn:
+                <input placeholder="" class="input__style2" type="text" style="width:150px" id="position_type_doctor"
+                    name="position_type_doctor" value="">
+                Ghi chú:
+                <input placeholder="" class="input__style2" type="text" id="note_doctor" name="note_doctor" value="0">
+                <button class="btn3" onclick="update_doctor2()">Cập nhật</button>
+            </div>
+
+            <table id="doctor_info">
+            </table>
+        </div>
+
+    </div>
+</body>
+
+</html>
+
+<script src="../static/js/ad.js"></script>
+<script src="../static/js/get_doctor.js"></script>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="login.css">
+    <script src="login.js"></script>
+    <title>Password</title>
+    <link rel="shortcut icon" href="../static/img/logo.png" type="image/x-icon">
+
+
+</head>
+
+<body id="main">
+
+    <div class="root">
+
+        <div class="acc_pass_new">
+            <div class="title">
+                <span class="title_login">
+                    <p><img src="../static/img/tm.png" alt=""> </p>
+                    <p style="font-size: 16px;text-shadow: 3px 1px 2px #d7d7d7;color: #009FE3;">Thay đổi mật khẩu</p>
+
+                </span>
+            </div>
+
+            <div class="user">
+                <input type="text" name="user" id="user" class="input_login" placeholder="Tài khoản">
+            </div>
+
+            <div class="pass">
+                <input type="password" name="pass" id="pass" class="input_login" placeholder="Mật khẩu hiện tại">
+            </div>
+
+			<div class="pass">
+                <input type="password" name="pass_new" id="pass_new" class="input_login" placeholder="Mật khẩu mới">
+            </div>
+
+			<div class="pass">
+                <input type="password" name="pass_new2" id="pass_new2" class="input_login" placeholder="Xác nhận mật khẩu mới">
+            </div>
+
+            <div class="login_buton">
+                <button type="submit" value="login" onclick="login()" class="btn"> Xác nhận </button>
+
+            </div>
+
+            <div class="info_login">
+                <p id="info_erro"></p>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+
+
+<script src="acc.js"></script>
