@@ -90,10 +90,12 @@ class api extends restful_api {
 				$token = md5($user.$pass_new);
 
 				$sql = "SELECT acc FROM acc  Where acc = BINARY '$user' AND pass = BINARY '$pass'";
+				// echo $sql;
                 mysqli_set_charset($conn, 'UTF8');
                 $result = $conn->query($sql);
 				if($result->num_rows > 0) {
-					$sql = "UPDATE acc SET pass = '$pass_new', token = '$token' WHERE acc = (SELECT * ( SELECT  acc FROM acc  Where acc = BINARY '$user' AND pass = BINARY '$pass') AS x)";
+					$sql = "UPDATE acc SET pass = '$pass_new', token = '$token' WHERE acc = (SELECT * FROM ( SELECT  acc FROM acc  Where acc = BINARY '$user' AND pass = BINARY '$pass') AS x)";
+					// echo "/n".$sql;
 					mysqli_set_charset($conn, 'UTF8');
 					$result = $conn->query($sql);
 					$data = "Cập nhật mật khẩu mới thành công";
