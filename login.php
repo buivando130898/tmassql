@@ -32,6 +32,35 @@ class api extends restful_api {
 		}
 	}
 
+
+
+	function tokenlogin_check() {
+		if ($this->method == 'GET'){
+			$data = false;  
+			if(isset($_GET["token"])   &&  isset($_GET["acc"])) {
+				$token = $_GET["token"];
+				$acc = $_GET["acc"];
+				include('connect.php');
+				$sql = "SELECT  acc FROM acc WHERE token = BINARY '$token'  AND acc = BINARY '$acc'";
+				// echo $sql ;
+				mysqli_set_charset($conn, 'UTF8');
+				$result = $conn->query($sql);
+				if ($result->num_rows > 0) {
+					while($row = $result->fetch_assoc()) {
+						$data = true;    
+					}
+				} 
+				
+				$conn->close();
+			}
+			$this->response(200, $data);
+
+		}
+	}
+
+	
+
+
     function login_admin(){
 		if ($this->method == 'GET'){
             if(isset($_GET["user"]) && isset($_GET["pass"]))
@@ -49,7 +78,7 @@ class api extends restful_api {
                     while($row = $result->fetch_assoc()) {
                         $data[]=$row;
                     }
-                }
+                } else $data = "Thông tin tài khoản hoặc mật khẩu không chính xác";
                 $conn->close();
                 $this->response(200, $data);
             }
@@ -90,12 +119,10 @@ class api extends restful_api {
 				$token = md5($user.$pass_new);
 
 				$sql = "SELECT acc FROM acc  Where acc = BINARY '$user' AND pass = BINARY '$pass'";
-				// echo $sql;
                 mysqli_set_charset($conn, 'UTF8');
                 $result = $conn->query($sql);
 				if($result->num_rows > 0) {
-					$sql = "UPDATE acc SET pass = '$pass_new', token = '$token' WHERE acc = (SELECT * FROM ( SELECT  acc FROM acc  Where acc = BINARY '$user' AND pass = BINARY '$pass') AS x)";
-					// echo "/n".$sql;
+					$sql = "UPDATE acc SET pass = '$pass_new', token = '$token' WHERE acc = '$user'";
 					mysqli_set_charset($conn, 'UTF8');
 					$result = $conn->query($sql);
 					$data = "Cập nhật mật khẩu mới thành công";
